@@ -11,6 +11,7 @@ kubectl config set-context --current --namespace=test
 ### Step 2: Apply other general configs configs
 ```
 kubectl apply -f ./ingress/
+kubectl apply -f ./mongo/
 ```
 
 ### Step 3: Add a new record to your /etc/hosts
