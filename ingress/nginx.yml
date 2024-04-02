@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bills-all
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: bills.loc
+      http:
+        paths:
+          - path: /()(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-bills-web
+                port:
+                  number: 3000
+          - path: /be(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-bills-be
+                port:
+                  number: 80
