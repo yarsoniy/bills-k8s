@@ -1,4 +1,4 @@
-### Step 1: Set up a kubernetes cluster and kubectl
+### Step 1: Set up a kubernetes cluster and kubectl. And clone this repository
 
 ### Step 2: Apply namespaces
 ```
