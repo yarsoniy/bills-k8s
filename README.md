@@ -12,15 +12,10 @@ kubectl config set-context --current --namespace=test
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/cloud/deploy.yaml
 ```
-### Step 2: Apply other general configs configs
+### Step 3: Apply other general configs configs
 ```
 kubectl apply -f ./ingress/
 kubectl apply -f ./mongo/
-```
-
-### Step 3: Add a new record to your /etc/hosts
-```
-127.0.0.1       bills.loc
 ```
 
 ### Step 4: Create a secret for pulling images from private GitHub Container Registry
@@ -33,4 +28,4 @@ https://github.com/yarsoniy/bills-web
 https://github.com/yarsoniy/bills
 
 ### Step 6: Finish
-Open http://bills.loc in your browser
+Open http://localhost in your browser
