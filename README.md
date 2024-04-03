@@ -1,4 +1,4 @@
-### Step 1: Set up a kubernetes cluster and kubectl. And clone this repository
+### Step 1: Set up a fresh kubernetes cluster and kubectl. And clone this repository
 
 ### Step 2: Apply namespaces
 ```
@@ -7,6 +7,10 @@ kubectl apply -f ./namespaces/
 ### Step 3: Switch to *test* namespace that was just created
 ```
 kubectl config set-context --current --namespace=test
+```
+### Step 2: Install Nginx Ingress Controller
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/cloud/deploy.yaml
 ```
 ### Step 2: Apply other general configs configs
 ```
