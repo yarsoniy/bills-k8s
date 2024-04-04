@@ -2,8 +2,7 @@
 
 ### Step 2: Install Nginx Ingress Controller
 ```
-kubectl create namespace nginx-ingress
-helm install my-nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 1.2.0 -n nginx-ingress
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/cloud/deploy.yaml
 ```
 
 ### Step: Create a namespace for our project
