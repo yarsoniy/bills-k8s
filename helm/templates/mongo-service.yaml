@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-{{ .Values.projectName }}-mongo
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Values.projectName }}-mongo
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ .Values.projectName }}-mongo
+  ports:
+  - port: 27017
+    targetPort: 27017

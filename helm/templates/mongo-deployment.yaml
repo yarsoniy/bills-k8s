@@ -1,12 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo
+  name: {{ .Values.projectName }}-mongo
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongo
+      app: {{ .Values.projectName }}-mongo
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -15,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        app: mongo
+        app: {{ .Values.projectName }}-mongo
     spec:
       containers:
         - name: mongo
@@ -23,8 +24,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 27017
-          env:
-            - name: MONGO_INITDB_ROOT_USERNAME
-              value: root
-            - name: MONGO_INITDB_ROOT_PASSWORD
-              value: example
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.projectName }}-mongo-configmap
+

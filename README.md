@@ -1,26 +1,20 @@
-### Step 1: Set up a fresh kubernetes cluster and kubectl. And clone this repository
+### Step 1: Prepare a kubernetes cluster and kubectl. And clone this repository
 
-### Step 2: Apply namespaces
-```
-kubectl apply -f ./namespaces/
-```
-### Step 3: Switch to *test* namespace that was just created
-```
-kubectl config set-context --current --namespace=test
-```
 ### Step 2: Install Nginx Ingress Controller
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/cloud/deploy.yaml
+kubectl create namespace nginx-ingress
+helm install my-nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 1.2.0 -n nginx-ingress
 ```
-### Step 3: Apply other general configs configs
+
+### Step: Create a namespace for our project
 ```
-kubectl apply -f ./ingress/
-kubectl apply -f ./mongo/
+kubectl create namespace bills
+helm install bills-k8s ./helm/ --values ./helm/values.yaml -n bills
 ```
 
 ### Step 4: Create a secret for pulling images from private GitHub Container Registry
 ```
-kubectl create secret docker-registry ghcr-pull-secret --docker-server=https://ghcr.io --docker-username=GITHUB_USERNAME --docker-password=GITHUB_ACCESS_TOKEN --docker-email=YOUR_EMAIL
+kubectl create secret docker-registry ghcr-pull-secret --docker-server=https://ghcr.io --docker-username=GITHUB_USERNAME --docker-password=GITHUB_ACCESS_TOKEN --docker-email=YOUR_EMAIL -n bills
 ```
 
 ### Step 5: Follow additional steps in this repositories:
